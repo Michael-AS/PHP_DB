@@ -6,9 +6,9 @@ Esta biblioteca possibilita o uso de objetos no banco de dados, apenas utilizand
 
 No caso do método selecionar, ele precisa que o objeto passado por parâmetro receba o retorno do mesmo.
 
-$usuario = new Usuario();
-$usuario->Login = "teste"; // Inserir pelo menos uma PK, senão ele retorna uma Exception
-$da = new UsuarioDataAccess();
-$usuario = $da->Selecionar($usuario);
+    $usuario = new Usuario();
+    $usuario->Login = "teste"; // Inserir pelo menos uma PK, senão ele retorna uma Exception
+    $da = new UsuarioDataAccess();
+    $usuario = $da->Selecionar($usuario);
 
 Desta forma você recebe o objeto populado com os dados encontrados no banco de dados ou nulo, caso não encontre.
