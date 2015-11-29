@@ -11,8 +11,19 @@ No caso do método selecionar, ele precisa que o objeto passado por parâmetro r
     $da             = new UsuarioDataAccess();
     $resultado      = $da->Selecionar($usuario);
 
+    // Aqui você pode realizar um retorno JSON de apenas 1 objeto
+    echo json_encode((array) $resultado);
+
 Desta forma você recebe uma lista com objetos populados com os dados encontrados no banco de dados ou nulo, caso não encontre.
 
-Nesta nova atualização, não é mais necessário utilizar uma Primary Key para buscar no banco, porém ainda estou estudando uma forma de que seja necessário, mas que o usuário possa buscar com outros critérios de seleção.
+Nesta nova atualização, se o método utilizado for um ExecuteSelectAll, o framework não exigirá que contenha uma Primary Key
+
+    $usuario        = new Usuario();
+    $usuario->Login = "teste";
+    $da             = new UsuarioDataAccess();
+    $resultado      = $da->SelecionarTodos();
+
+    // Aqui você pode realizar um retorno JSON de uma lista de objetos
+    echo json_encode((array) $resultado);
 
 Uma alteração também foi o uso de PDO com Factory, necessitando de um *config.ini* para que o banco seja instanciado e utilizado sem problemas.

@@ -45,7 +45,26 @@ class Command
 		try
 		{
 			$MontaSelect = new MontaSelect($obj);
-			$sql         = $MontaSelect->GetSQL();
+			$sql         = $MontaSelect->GetSQL(false);
+			$retorno     = Database::ExecuteQuery($sql);
+			$fields      = GerenciadorSQL::GetFields($obj, true);
+			$props       = GerenciadorSQL::GetProperties($obj);
+			$reflection  = new ReflectionClass($obj);
+
+			return Convert::ToObject($retorno, $fields, $props, $reflection, $obj);
+		}
+		catch(Exception $e)
+		{
+			$this->ShowException($e);
+		}
+	}
+
+	public function ExecuteSelectAll($obj)
+	{
+		try
+		{
+			$MontaSelect = new MontaSelect($obj);
+			$sql         = $MontaSelect->GetSQL(true);
 			$retorno     = Database::ExecuteQuery($sql);
 			$fields      = GerenciadorSQL::GetFields($obj, true);
 			$props       = GerenciadorSQL::GetProperties($obj);

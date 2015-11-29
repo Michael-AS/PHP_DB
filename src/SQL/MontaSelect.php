@@ -41,10 +41,9 @@ class MontaSelect
 			}
 		}
 
-		/* Removido para realizar listagem
 		if ($qpk == 0)
 			throw new Exception("PK não informada", 404);
-		*/
+		
 
 		for ($i = 0; $i < $num_fields; $i++)
 		{
@@ -59,19 +58,20 @@ class MontaSelect
 		return $sql;
 	}
 
-	public function GetSQL()
+	public function GetSQL($isList = false)
 	{
 		try
 		{
 			$obj        = $this->object;
-			$fields     = GerenciadorSQL::GetFields($obj,false);
-			$values     = GerenciadorSQL::GetValues($obj,$fields,false);
+			$fields     = GerenciadorSQL::GetFields($obj, false);
+			$values     = GerenciadorSQL::GetValues($obj, $fields, false);
 			$numf       = count($values);
 			$sql        = null;
 
 			$sql       .= "SELECT *\n";
 			$sql       .= "  FROM " . $obj->GetTableName() . "\n";
-			$sql       .= $this->MontaWhere($numf,$fields,$values);
+			if (!$isList)
+				$sql   .= $this->MontaWhere($numf, $fields, $values);
 			$sql        = trim($sql);
 
 			return $sql;

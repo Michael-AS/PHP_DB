@@ -44,7 +44,7 @@ class UsuarioDataAccess
 	{
 		$obj = new Usuario();
 		$cmd = new Command();
-		return $cmd->ExecuteSelect($obj);
+		return $cmd->ExecuteSelectAll($obj);
 	}
 }
 
