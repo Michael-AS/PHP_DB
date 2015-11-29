@@ -1,5 +1,7 @@
 <?php
 
+namespace Entities;
+
 class Usuario
 {
 	private $TABLE  = "adm_usu";

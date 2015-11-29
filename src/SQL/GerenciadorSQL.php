@@ -1,5 +1,7 @@
 <?php
 
+namespace SQL;
+
 class GerenciadorSQL
 {
 	public function __construct()
